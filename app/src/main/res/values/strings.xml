@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Epg Test</string>
+    <string name="home_navigation">Home</string>
+    <string name="live_navigation">Live</string>
+    <string name="tv_guide_navigation">Tv Guide</string>
+    <string name="catch_up_navigation">Catch up</string>
+    <string name="library_navigation">Library</string>
+</resources>

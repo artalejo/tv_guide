@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transition_image">image</string>
+    <string name="transition_tiny_image">tiny image</string>
+    <string name="transition_title">title</string>
+    <string name="transition_toolbar_button">toolbar button</string>
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/channel_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_search"/>
+
+    <TextView
+        android:id="@+id/schedule_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/show_title"
+        app:layout_constraintEnd_toEndOf="@+id/show_progress"
+        app:layout_constraintStart_toEndOf="@+id/channel_logo"
+        app:layout_constraintTop_toTopOf="@+id/channel_logo"
+        tools:text="11:00 - 13:00" />
+
+    <TextView
+        android:id="@+id/show_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/show_progress"
+        app:layout_constraintEnd_toEndOf="@+id/schedule_time"
+        app:layout_constraintStart_toStartOf="@+id/schedule_time"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_time" />
+
+    <ProgressBar
+        android:id="@+id/show_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        tools:progress="50"
+        app:layout_constraintBottom_toBottomOf="@+id/channel_logo"
+        app:layout_constraintEnd_toStartOf="@+id/favorite_channel"
+        app:layout_constraintStart_toEndOf="@+id/channel_logo"
+        app:layout_constraintTop_toBottomOf="@+id/show_title" />
+
+    <ImageView
+        android:id="@+id/favorite_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/channel_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/channel_logo"
+        app:srcCompat="@drawable/ic_favorite_star"
+        tools:src="@drawable/ic_favorite_star" />
+
+</android.support.constraint.ConstraintLayout>
