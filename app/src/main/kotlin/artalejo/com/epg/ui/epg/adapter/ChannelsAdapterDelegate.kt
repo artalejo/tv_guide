@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.entities.ChannelViewEntity
-import artalejo.com.epg.ui.entities.ScheduleViewEntity
 import artalejo.com.epg.ui.utils.adapter.*
 import artalejo.com.epg.ui.utils.extensions.load
 import kotlinx.android.synthetic.main.item_channel.view.*
@@ -18,6 +17,7 @@ class ChannelsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
 
     interface ChannelClickListener: BaseListener {
         fun onChannelClicked(channelEntity: ChannelViewEntity)
+        fun onChannelFavoriteStatusChanged(channelEntityId: String, isFavorite: Boolean)
     }
 
     override fun isForViewType(items: List<ViewType>, position: Int) =
@@ -43,12 +43,22 @@ class ChannelsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
                     val scheduleViewEntity = schedules[0]
                     itemView.schedule_time.text = scheduleViewEntity.scheduleTime
                     itemView.show_title.text = scheduleViewEntity.title
-                    itemView.show_progress.progress = 50 // todo find out progress
+                    setFavoriteStatus()
+                    itemView.show_progress.progress = (0..100).shuffled().last() // Getting random progress
                 }
                 itemView.setOnClickListener {
                     listener?.let { (it as ChannelClickListener).onChannelClicked(channelEntity) }
                 }
+                itemView.favorite_channel.setOnClickListener {
+                    channelEntity.isFavorite = !channelEntity.isFavorite
+                    setFavoriteStatus()
+                    listener?.let { (it as ChannelClickListener).onChannelFavoriteStatusChanged(channelEntity.id, channelEntity.isFavorite) }
+                }
             }
+        }
+
+        private fun ChannelViewEntity.setFavoriteStatus() {
+            itemView.favorite_channel.setImageResource(if (isFavorite) R.drawable.ic_favorite_star else R.drawable.ic_grey_star)
         }
     }
 }

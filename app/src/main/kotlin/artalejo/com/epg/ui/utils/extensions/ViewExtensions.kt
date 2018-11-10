@@ -4,20 +4,14 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.support.design.widget.TabLayout
-import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.SearchView
-import android.text.Html
-import android.text.Spanned
-import android.text.TextPaint
-import android.text.style.URLSpan
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
 import artalejo.com.epg.R
 import artalejo.com.epg.dependencyinjection.application.GlideApp
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -39,25 +33,6 @@ fun ImageView.loadWithPlaceholders(url: String, errorResourceId: Int,
             .load(url)
             .error(errorResourceId)
             .placeholder(placeHolderResourceId)
-            .into(this)
-}
-
-/**
- * Loads a circular image from a specified url
- *
- * @param url image url
- * @param placeHolderResourceId placeholder that will be set by default
- * @param errorResourceId resource id in case the loading url fails
- */
-fun ImageView.loadCircular(url: String, placeHolderResourceId: Int = R.drawable
-        .rounded_image_placeholder, errorResourceId: Int = R.drawable.rounded_image_placeholder) {
-
-    GlideApp.with(this)
-            .load(url)
-            .circleCrop()
-            .error(errorResourceId)
-            .placeholder(placeHolderResourceId)
-            .apply(RequestOptions.circleCropTransform())
             .into(this)
 }
 

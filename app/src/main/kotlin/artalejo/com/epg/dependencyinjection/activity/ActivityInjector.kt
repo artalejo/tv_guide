@@ -4,6 +4,7 @@ import artalejo.com.epg.dependencyinjection.scope.PerActivity
 import artalejo.com.epg.ui.home.HomeActivity
 import artalejo.com.epg.ui.home.HomeActivityModule
 import artalejo.com.epg.ui.splash.SplashActivity
+import artalejo.com.epg.ui.splash.SplashActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,7 +12,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityInjector {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [])
+    @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     abstract fun contributeSplashInjector(): SplashActivity
 
     @PerActivity

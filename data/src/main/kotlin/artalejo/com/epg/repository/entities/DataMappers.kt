@@ -10,14 +10,14 @@ import java.util.*
 val DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
 
 fun ChannelDataEntity.toChannelInfo() =
-        ChannelInfo(this.id, this.title, this.images.toImagesInfo(), this.schedules.map { it.toScheduleInfo() })
+        ChannelInfo(this.id, this.title, this.isFavorite, this.images.toImagesInfo(), this.schedules.map{ it.toScheduleInfo() })
 
 fun ImagesDataEntity.toImagesInfo() = ImagesInfo(this.logo)
 
 fun ScheduleDataEntity.toScheduleInfo() = ScheduleInfo(this.title, this.id, formatDate(this.start),
-                                                       formatDate(this.end))
+        formatDate(this.end))
 
-private fun formatDate(date: String) : Date {
+private fun formatDate(date: String): Date {
     return try {
         DATE_FORMAT.parse(date)
     } catch (e: ParseException) {

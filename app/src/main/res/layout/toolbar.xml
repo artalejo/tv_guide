@@ -22,7 +22,6 @@
 
         <ImageView
             android:id="@+id/toolbar_icon"
-            style="@style/ToolbarTitle"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:layout_constraintBottom_toBottomOf="parent"

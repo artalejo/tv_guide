@@ -55,7 +55,8 @@ class GenericAdapter @Inject constructor(delegates: MutableSet<AdapterDelegate<L
      * Sets a list of listeners to each delegate. Each listener must extend
      * from [BaseListener]
      */
-    fun setListeners(listeners: List<BaseListener>) { delegatesManager.setListeners(listeners) }
+    fun setMultipleListeners(listeners: List<BaseListener>) { delegatesManager.setListeners(listeners) }
+    fun setClickListener(listener: BaseListener) { delegatesManager.setClickListener(listener) }
 
     fun getItemAt(position: Int): ViewType = items.elementAt(position)
 

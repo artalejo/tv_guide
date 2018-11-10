@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class GetChannelsInteractor @Inject constructor(postExecutionThread: PostExecutionThread,
                                                 private val repository: ChannelsRepository)
-    : Interactor<ArrayList<ChannelInfo>, String>(postExecutionThread) {
+    : Interactor<ArrayList<ChannelInfo>, Unit>(postExecutionThread) {
 
-    override fun run(channelsData: String): Result<ArrayList<ChannelInfo>, *> {
-        return repository.getChannels(channelsData)
+    override fun run(params : Unit): Result<ArrayList<ChannelInfo>, *> {
+        return repository.getChannels()
     }
 }

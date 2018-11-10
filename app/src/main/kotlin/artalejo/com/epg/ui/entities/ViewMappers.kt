@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 val HOUR_FORMAT = SimpleDateFormat("HH:mm")
 
 fun ChannelInfo.toChannelViewEntity() =
-        ChannelViewEntity(this.id, this.title, this.images.toImagesViewEntity(), this.schedules.map { it.toScheduleViewEntity() })
+        ChannelViewEntity(this.id, this.title, this.isFavorite,  this.images.toImagesViewEntity(), this.schedules.map { it.toScheduleViewEntity() })
 
 fun ImagesInfo.toImagesViewEntity() = ImagesViewEntity(this.logo)
 
