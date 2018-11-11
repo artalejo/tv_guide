@@ -55,9 +55,9 @@ class ChannelDetailActivity : BaseActivity(), ChannelDetailView {
             channel_logo.load(channelImages.logo)
             channel_title.text = channelTitle
             show_title.text = title
-            show_genres.text = meta.genres.joinToString { "  " }
-            show_cast.text = meta.cast.asSequence().map { it.name }.joinToString { "  " }
-            show_creators.text = meta.creators.asSequence().map { it.name }.joinToString { "  " }
+            show_genres.text = meta.genres.joinToString(getString(R.string.common_separator))
+            show_cast.text = meta.cast.asSequence().map{ it.name }.joinToString(getString(R.string.comma_separator), prefix = getString(R.string.cast_header))
+            show_creators.text = meta.creators.asSequence().map { it.name }.joinToString (getString(R.string.comma_separator), prefix = getString(R.string.creators_header))
             show_description.text = description
         }
     }

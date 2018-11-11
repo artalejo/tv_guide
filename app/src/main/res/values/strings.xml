@@ -6,4 +6,8 @@
     <string name="catch_up_navigation">Catch up</string>
     <string name="library_navigation">Library</string>
     <string name="load_channels_error">There has been an error retrieving the channels information</string>
+    <string name="cast_header">Cast:\u0020\u0020</string>
+    <string name="creators_header">Creators:\u0020\u0020</string>
+    <string name="common_separator">\u0020\u0020</string>
+    <string name="comma_separator">,\u0020</string>
 </resources>
