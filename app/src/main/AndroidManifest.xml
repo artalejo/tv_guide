@@ -28,6 +28,11 @@
             android:theme="@style/ActivityTheme"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <activity android:name="artalejo.com.epg.ui.channelDetail.ChannelDetailActivity"
+            android:theme="@style/ActivityTheme"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>

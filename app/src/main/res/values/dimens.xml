@@ -16,4 +16,10 @@
     <dimen name="album_card_width">250dp</dimen>
     <dimen name="recyclerview_bottom_spacing_default">10dp</dimen>
     <dimen name="recyclerview_bottom_spacing_extra">62dp</dimen>
+    <dimen name="toolbar_title_lateral_margin">16dp</dimen>
+    <dimen name="show_detail_scrim_visible_height">58dp</dimen>
+    <dimen name="collapsing_margin_end">64dp</dimen>
+    <dimen name="collapsing_margin_start">48dp</dimen>
+    <dimen name="back_toolbar_size">32dp</dimen>
+    <dimen name="toolbar_circular_icon_bkg">36dp</dimen>
 </resources>

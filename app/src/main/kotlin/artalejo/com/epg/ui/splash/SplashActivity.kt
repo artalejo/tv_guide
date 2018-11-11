@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
 
-    private val FILENAME = "epg.json"
+    private val FILENAME_CHANNELS = "epg.json"
+    private val FILENAME_DETAILS = "epg_details.json"
 
     @Inject
     lateinit var navigator: Navigator
@@ -27,8 +28,13 @@ class SplashActivity : BaseActivity(), SplashView {
 
     override fun isDataSaved(isSaved: Boolean) {
         if (isSaved) dataSavedSuccessfully()
-        else presenter.saveChannelsData(loadJSONFromAsset(FILENAME))
+        else {
+            presenter.saveChannelsData()
+        }
     }
+
+    override fun getChannelsData() = loadJSONFromAsset(FILENAME_CHANNELS)
+    override fun getChannelsDetailData() = loadJSONFromAsset(FILENAME_DETAILS)
 
     private fun loadJSONFromAsset(assetName: String): String? {
         var json: String?

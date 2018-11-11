@@ -18,6 +18,8 @@ import java.io.File
 import java.io.FileOutputStream
 
 private val NOT_FILLED = "Not filled"
+private val TITLE_ANIM_DURATION : Long = 300
+private val TITLE_ANIM_ALPHA  = 1f
 
 /**
  * Loads an image from a specified url and adds a placeholder
@@ -241,3 +243,17 @@ fun View.showAnimation(context:Context, animation: Int, setVisible: Boolean = fa
     if (setVisible) this.setVisible()
     if (setGone) this.setGone()
 }
+//
+//fun AppBarLayout.setParallaxBehaviour(toolbarTitle: TextView, actualTitle: String) {
+//    this.addOnOffsetChangedListener { appBarLayout: AppBarLayout, verticalOffset: Int ->
+//        if (verticalOffset <= -appBarLayout.totalScrollRange) {
+//            //Toolbar Collapsed
+//            toolbarTitle.text = actualTitle
+//            toolbarTitle.animate().alpha(TITLE_ANIM_ALPHA).duration = TITLE_ANIM_DURATION
+//        } else {
+//            //Toolbar Expanded
+//            toolbarTitle.text = " "
+//        }
+//
+//    }
+//}

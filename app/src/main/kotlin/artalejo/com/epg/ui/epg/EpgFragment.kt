@@ -5,11 +5,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.base.BaseFragment
+import artalejo.com.epg.ui.channelDetail.ChannelDetailActivity
 import artalejo.com.epg.ui.entities.ChannelViewEntity
 import artalejo.com.epg.ui.epg.adapter.ChannelsAdapterDelegate
 import artalejo.com.epg.ui.utils.adapter.GenericAdapter
 import kotlinx.android.synthetic.main.epg_fragment.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClickListener {
@@ -29,13 +29,11 @@ class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClic
     }
 
     private fun setupRecyclerView() {
-
         with(channels_recycler) {
             layoutManager = LinearLayoutManager(activity)
             channelsAdapter.setClickListener(this@EpgFragment)
             adapter = channelsAdapter
         }
-
     }
 
     override fun onResume() {
@@ -53,7 +51,7 @@ class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClic
 
     // Adapter listeners
     override fun onChannelClicked(channelEntity: ChannelViewEntity) {
-        activity?.toast("${channelEntity.title} has been clicked")
+        context?.let { startActivity(ChannelDetailActivity.getIntent(it)) }
     }
 
     override fun onChannelFavoriteStatusChanged(channelEntityId: String, isFavorite: Boolean) {
