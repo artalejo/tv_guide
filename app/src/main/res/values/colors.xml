@@ -9,4 +9,6 @@
     <color name="dark_gray">#545454</color>
     <color name="light_gray">#828282</color>
     <color name="normal_gray">#66888888</color>
+    <color name="live_green">#0cc718</color>
+    <color name="alpha_50_black">#80000000</color>
 </resources>

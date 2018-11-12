@@ -7,7 +7,9 @@ import android.view.MenuItem
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.base.BaseActivity
 import artalejo.com.epg.ui.base.BaseFragment
+import artalejo.com.epg.ui.emptyFragment.EmptyFragment
 import artalejo.com.epg.ui.epg.EpgFragment
+import artalejo.com.epg.ui.epgDetail.EpgDetailFragment
 import kotlinx.android.synthetic.main.home_activity.*
 
 class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +22,10 @@ class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationI
     }
 
     private var epgFragment: EpgFragment? = null
+    private var epgLiveFragment: EpgDetailFragment? = null
+    private var epgGuideFragment: EmptyFragment? = null
+    private var epgCatchUpFragment: EpgDetailFragment? = null
+    private var epgLibraryFragment: EmptyFragment? = null
 
     override var layout = R.layout.home_activity
 
@@ -49,31 +55,31 @@ class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationI
                 return true
             }
             R.id.live_navigation -> {
-//                clickOnItem({
-//                    epgFragment = epgFragment?.let { it } ?: EpgFragment.newInstance()
-//                    epgFragment
-//                }, replaceFragment = true)
+                clickOnItem({
+                    epgLiveFragment = epgLiveFragment?.let { it } ?: EpgDetailFragment.newInstance(isLiveShow = true)
+                    epgLiveFragment
+                }, replaceFragment = true)
                 return true
             }
             R.id.tv_guide_navigation -> {
-//                clickOnItem({
-//                    epgFragment = epgFragment?.let { it } ?: EpgFragment.newInstance()
-//                    epgFragment
-//                }, replaceFragment = true)
+                clickOnItem({
+                    epgGuideFragment = epgGuideFragment?.let { it } ?: EmptyFragment.newInstance(getString(R.string.guide))
+                    epgGuideFragment
+                }, replaceFragment = true)
                 return true
             }
             R.id.catch_up_navigation -> {
-//                clickOnItem({
-//                    epgFragment = epgFragment?.let { it } ?: EpgFragment.newInstance()
-//                    epgFragment
-//                }, replaceFragment = true)
+                clickOnItem({
+                    epgCatchUpFragment = epgCatchUpFragment?.let { it } ?: EpgDetailFragment.newInstance(isLiveShow = false)
+                    epgCatchUpFragment
+                }, replaceFragment = true)
                 return true
             }
             R.id.library_navigation -> {
-//                clickOnItem({
-//                    epgFragment = epgFragment?.let { it } ?: EpgFragment.newInstance()
-//                    epgFragment
-//                }, replaceFragment = true)
+                clickOnItem({
+                    epgLibraryFragment = epgLibraryFragment?.let { it } ?: EmptyFragment.newInstance(getString(R.string.library))
+                    epgLibraryFragment
+                }, replaceFragment = true)
                 return true
             }
             else -> return false

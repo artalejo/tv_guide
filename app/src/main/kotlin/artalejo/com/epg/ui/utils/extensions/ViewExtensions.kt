@@ -3,6 +3,7 @@ package artalejo.com.epg.ui.utils.extensions
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.SearchView
@@ -243,17 +244,16 @@ fun View.showAnimation(context:Context, animation: Int, setVisible: Boolean = fa
     if (setVisible) this.setVisible()
     if (setGone) this.setGone()
 }
-//
-//fun AppBarLayout.setParallaxBehaviour(toolbarTitle: TextView, actualTitle: String) {
-//    this.addOnOffsetChangedListener { appBarLayout: AppBarLayout, verticalOffset: Int ->
-//        if (verticalOffset <= -appBarLayout.totalScrollRange) {
-//            //Toolbar Collapsed
-//            toolbarTitle.text = actualTitle
-//            toolbarTitle.animate().alpha(TITLE_ANIM_ALPHA).duration = TITLE_ANIM_DURATION
-//        } else {
-//            //Toolbar Expanded
-//            toolbarTitle.text = " "
-//        }
-//
-//    }
-//}
+
+fun AppBarLayout.setParallaxBehaviour(toolbarTitle: TextView, actualTitle: String) {
+    this.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+        if (verticalOffset <= -appBarLayout.totalScrollRange) {
+            //Toolbar Collapsed
+            toolbarTitle.text = actualTitle
+            toolbarTitle.animate().alpha(TITLE_ANIM_ALPHA).duration = TITLE_ANIM_DURATION
+        } else {
+            //Toolbar Expanded
+            toolbarTitle.text = " "
+        }
+    })
+}

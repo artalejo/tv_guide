@@ -16,11 +16,11 @@
             android:id="@+id/toolbar_back"
             android:layout_width="@dimen/back_toolbar_size"
             android:layout_height="@dimen/back_toolbar_size"
-            android:background="@drawable/ic_toolbar_circular_background"
+            android:background="@drawable/ic_toolbar_back"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/coordinator_toolbar_title"
