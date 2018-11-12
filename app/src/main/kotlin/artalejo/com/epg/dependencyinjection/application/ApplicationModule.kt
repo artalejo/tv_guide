@@ -19,10 +19,7 @@ class ApplicationModule {
         return application
     }
 
-
     @Provides
     @Singleton
     internal fun providesContinuation(): AbstractCoroutineContextElement = Android
-
-
 }

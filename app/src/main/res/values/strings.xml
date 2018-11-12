@@ -13,4 +13,5 @@
     <string name="live_tag">LIVE</string>
     <string name="guide">GUIDE</string>
     <string name="library">LIBRARY</string>
+    <string name="favorite_status_updated">Favorite status updated</string>
 </resources>

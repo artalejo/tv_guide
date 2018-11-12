@@ -15,7 +15,7 @@ abstract class Interactor<out SuccessValue, in Parameters > {
 
     fun execute(parameters: Parameters, delegate: (result: Result<SuccessValue, *>) -> Unit) {
         job = launch(androidContext) {
-            val result = async {
+            val result =  async(androidContext) {
                 run(parameters)
             }
             delegate(result.await())

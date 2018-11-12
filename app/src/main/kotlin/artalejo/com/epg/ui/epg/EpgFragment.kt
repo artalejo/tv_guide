@@ -10,6 +10,7 @@ import artalejo.com.epg.ui.entities.ChannelViewEntity
 import artalejo.com.epg.ui.epg.adapter.ChannelsAdapterDelegate
 import artalejo.com.epg.ui.utils.adapter.GenericAdapter
 import kotlinx.android.synthetic.main.epg_fragment.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClickListener {
@@ -46,6 +47,9 @@ class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClic
         hideLoading()
     }
 
+    override fun favoriteStatusUpdated() {
+        activity?.toast(getString(R.string.favorite_status_updated))
+    }
     override fun showLoading() = onLoading(channels_recycler, channels_progress_bar)
     override fun hideLoading() = onInfoRetrieved(channels_recycler, channels_progress_bar)
 

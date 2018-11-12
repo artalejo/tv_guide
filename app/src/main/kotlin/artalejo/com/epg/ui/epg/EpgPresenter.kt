@@ -13,9 +13,13 @@ class EpgPresenter @Inject constructor(val view: EpgView,
 
     fun onChannelFavoriteStatusChanged(channelId: String, isFavorite: Boolean) {
         if (isFavorite) {
-            favoriteChannelInteractor.execute(channelId) { }
+            favoriteChannelInteractor.execute(channelId) {
+                result -> result.success { view.favoriteStatusUpdated() }
+            }
         } else {
-            unfavoriteChannelInteractor.execute(channelId) { }
+            unfavoriteChannelInteractor.execute(channelId) {
+                result -> result.success { view.favoriteStatusUpdated() }
+            }
         }
     }
 
