@@ -22,14 +22,10 @@
         </activity>
 
         <activity android:name="artalejo.com.epg.ui.home.HomeActivity"
-            android:theme="@style/ActivityTheme"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:theme="@style/ActivityTheme"/>
 
         <activity android:name="artalejo.com.epg.ui.channelDetail.ChannelDetailActivity"
-            android:theme="@style/ActivityTheme"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:theme="@style/ActivityTheme"/>
     </application>
 
 </manifest>

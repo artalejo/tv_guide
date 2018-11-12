@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.evernote.android.state.StateSaver
 import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.AnkoLogger
 
@@ -23,11 +22,6 @@ import org.jetbrains.anko.AnkoLogger
 abstract class BaseFragment : Fragment(), LoadingBaseView, AnkoLogger, EmptyBaseView {
 
     abstract var layout: Int
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        StateSaver.restoreInstanceState(this, savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(layout, null)

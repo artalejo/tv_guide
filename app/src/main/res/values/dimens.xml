@@ -9,6 +9,7 @@
     <dimen name="divider_margin">24dp</dimen>
     <dimen name="list_item_separation">8dp</dimen>
     <dimen name="detail_image_height">300dp</dimen>
+    <dimen name="detail_image_height_land">150dp</dimen>
     <dimen name="default_text_size">14sp</dimen>
     <dimen name="card_extra_height">20dp</dimen>
     <dimen name="card_bottom_info_height">150dp</dimen>

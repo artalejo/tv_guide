@@ -1,5 +1,6 @@
 package artalejo.com.epg.ui.splash
 
+import android.os.Bundle
 import artalejo.com.epg.Navigator
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.base.BaseActivity
@@ -19,7 +20,7 @@ class SplashActivity : BaseActivity(), SplashView {
 
     override var layout = R.layout.activity_splash
 
-    override fun onViewLoaded() {}
+    override fun onViewLoaded(savedInstanceState: Bundle?) { }
 
     override fun onResume() {
         super.onResume()

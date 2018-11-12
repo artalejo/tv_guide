@@ -2,8 +2,8 @@ package artalejo.com.epg.ui.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
-import com.evernote.android.state.StateSaver
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -29,16 +29,10 @@ abstract class BaseActivity: AppCompatActivity(), LoadingBaseView,
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(layout)
-        StateSaver.restoreInstanceState(this, savedInstanceState)
-        onViewLoaded()
+        onViewLoaded(savedInstanceState)
     }
 
-    abstract fun onViewLoaded()
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState.let { StateSaver.saveInstanceState(this, outState!!) }
-    }
+    abstract fun onViewLoaded(savedInstanceState: Bundle?)
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return dispatchingFragmentInjector
@@ -57,5 +51,14 @@ abstract class BaseActivity: AppCompatActivity(), LoadingBaseView,
         transaction.replace(containerViewId, fragment)
         if (addToBackStack) transaction.addToBackStack(fragmentTag)
         transaction.commit()
+    }
+
+
+    protected fun FragmentManager.putFragmentSafe(outState: Bundle, key: String, fragment: Fragment?) {
+        fragment?.let {
+            if (it.isAdded) {
+                putFragment(outState, key, it)
+            }
+        }
     }
 }

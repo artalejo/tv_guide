@@ -2,6 +2,7 @@ package artalejo.com.epg.ui.channelDetail
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.Toolbar
 import artalejo.com.epg.R
@@ -29,7 +30,7 @@ class ChannelDetailActivity : BaseActivity(), ChannelDetailView {
     lateinit var presenter: ChannelDetailPresenter
     override var layout = R.layout.channel_detail_activity
 
-    override fun onViewLoaded() {
+    override fun onViewLoaded(savedInstanceState: Bundle?) {
         setUpToolbar()
     }
 

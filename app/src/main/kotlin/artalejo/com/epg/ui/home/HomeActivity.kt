@@ -2,6 +2,7 @@ package artalejo.com.epg.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.view.MenuItem
 import artalejo.com.epg.R
@@ -15,6 +16,13 @@ import kotlinx.android.synthetic.main.home_activity.*
 class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationItemSelectedListener {
 
     companion object {
+        private const val EXTRA_FRAGMENT_EPG = "EXTRA_FRAGMENT_EPG"
+        private const val EXTRA_FRAGMENT_LIVE = "EXTRA_FRAGMENT_LIVE"
+        private const val EXTRA_FRAGMENT_GUIDE = "EXTRA_FRAGMENT_GUIDE"
+        private const val EXTRA_FRAGMENT_CATCH_UP = "EXTRA_FRAGMENT_CATCH_UP"
+        private const val EXTRA_FRAGMENT_LIBRARY = "EXTRA_FRAGMENT_LIBRARY"
+        private const val CURRENT_TAB_SELECTED = "CURRENT_TAB_SELECTED"
+
         @JvmStatic
         fun getIntent(context: Context): Intent {
             return Intent(context, HomeActivity::class.java)
@@ -26,12 +34,38 @@ class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationI
     private var epgGuideFragment: EmptyFragment? = null
     private var epgCatchUpFragment: EpgDetailFragment? = null
     private var epgLibraryFragment: EmptyFragment? = null
+    private var defaultTabMenuId = R.id.home_navigation
 
     override var layout = R.layout.home_activity
 
-    override fun onViewLoaded() {
+    override fun onViewLoaded(savedInstanceState: Bundle?) {
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-        bottom_navigation.selectedItemId = R.id.home_navigation
+        checkRestoringState(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.let {
+            outState.putInt(CURRENT_TAB_SELECTED, bottom_navigation.selectedItemId)
+            supportFragmentManager.putFragmentSafe(outState, EXTRA_FRAGMENT_EPG, epgFragment)
+            supportFragmentManager.putFragmentSafe(outState, EXTRA_FRAGMENT_LIVE, epgLiveFragment)
+            supportFragmentManager.putFragmentSafe(outState, EXTRA_FRAGMENT_GUIDE, epgGuideFragment)
+            supportFragmentManager.putFragmentSafe(outState, EXTRA_FRAGMENT_CATCH_UP, epgCatchUpFragment)
+            supportFragmentManager.putFragmentSafe(outState, EXTRA_FRAGMENT_LIBRARY, epgLibraryFragment)
+        }
+    }
+
+    private fun checkRestoringState(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            bottom_navigation.selectedItemId = defaultTabMenuId
+        } else {
+            bottom_navigation.selectedItemId = savedInstanceState.getInt(CURRENT_TAB_SELECTED, defaultTabMenuId)
+            epgFragment = supportFragmentManager.getFragment(savedInstanceState, EXTRA_FRAGMENT_EPG) as? EpgFragment
+            epgLiveFragment = supportFragmentManager.getFragment(savedInstanceState, EXTRA_FRAGMENT_LIVE) as? EpgDetailFragment
+            epgGuideFragment = supportFragmentManager.getFragment(savedInstanceState, EXTRA_FRAGMENT_GUIDE) as? EmptyFragment
+            epgCatchUpFragment = supportFragmentManager.getFragment(savedInstanceState, EXTRA_FRAGMENT_CATCH_UP) as? EpgDetailFragment
+            epgLibraryFragment = supportFragmentManager.getFragment(savedInstanceState, EXTRA_FRAGMENT_LIBRARY) as? EmptyFragment
+        }
     }
 
     override fun onBackPressed() {
@@ -94,4 +128,5 @@ class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationI
             else addFragment(R.id.fragment_container, homeBaseFragment)
         }
     }
+
 }
