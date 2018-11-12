@@ -1,13 +1,11 @@
 package artalejo.com.epg.interactor
 
 import artalejo.com.epg.Result
-import artalejo.com.epg.async.PostExecutionThread
 import artalejo.com.epg.repository.ChannelsRepository
 import javax.inject.Inject
 
-class UnfavoriteChannelInteractor @Inject constructor(postExecutionThread: PostExecutionThread,
-                                                      private val repository: ChannelsRepository)
-    : Interactor<Boolean, String>(postExecutionThread) {
+class UnfavoriteChannelInteractor @Inject constructor(private val repository: ChannelsRepository)
+    : Interactor<Boolean, String>() {
 
     override fun run(channelId: String): Result<Boolean, *> {
         return repository.setFavoriteStatus(channelId, false)

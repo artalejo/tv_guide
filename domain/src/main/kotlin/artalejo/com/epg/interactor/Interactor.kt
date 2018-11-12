@@ -1,19 +1,28 @@
 package artalejo.com.epg.interactor
 
 import artalejo.com.epg.Result
-import artalejo.com.epg.async.doAsync
-import artalejo.com.epg.async.onComplete
-import artalejo.com.epg.async.PostExecutionThread
+import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
+import javax.inject.Inject
+import kotlin.coroutines.experimental.AbstractCoroutineContextElement
 
-abstract class Interactor<out SuccessValue, in Parameters > constructor(val postExecutionThread: PostExecutionThread) {
+abstract class Interactor<out SuccessValue, in Parameters > {
 
-    fun execute(parameters: Parameters, delegate: (result: Result<SuccessValue, *>) -> Unit) = doAsync {
-        val result = run(parameters)
+    @Inject
+    lateinit var androidContext: AbstractCoroutineContextElement
+    var job: Job? = null
 
-        onComplete(postExecutionThread) {
-            delegate(result)
+    fun execute(parameters: Parameters, delegate: (result: Result<SuccessValue, *>) -> Unit) {
+        job = launch(androidContext) {
+            val result = async {
+                run(parameters)
+            }
+            delegate(result.await())
         }
     }
 
     abstract fun run(params: Parameters): Result<SuccessValue, *>
+    fun cancel() = job?.cancel()
+
 }
