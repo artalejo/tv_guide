@@ -89,7 +89,11 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockito_inline"
     testImplementation "com.nhaarman:mockito-kotlin:$mockito_kotlin"
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestCompile( "com.android.support.test.espresso:espresso-contrib:$espresso_version")
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

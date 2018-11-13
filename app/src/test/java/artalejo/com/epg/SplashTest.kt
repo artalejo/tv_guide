@@ -64,6 +64,51 @@ class SplashTest {
         verify(mockedSplashView).isDataSaved(false)
     }
 
+    @Test
+    fun saveChannelsDataSuccess() {
+        // given
+        val emptyJson = "{}"
+        val success = Result.Success(true)
+        val failure = Result.Failure()
+        whenever(mockedSplashView.getChannelsData()).thenReturn(emptyJson)
+        whenever(mockedSplashView.getChannelsDetailData()).thenReturn(emptyJson)
+        whenever(mockedChannelsRepo.saveChannelsData(emptyJson)).thenReturn(success)
+        whenever(mockedChannelsRepo.saveChannelDetailsData(emptyJson)).thenReturn(success)
+        // when
+        splashPresenter.saveChannelsData()
+        // then
+        verify(mockedSplashView).dataSavedSuccessfully()
+    }
+
+    @Test
+    fun saveChannelsDataFailureWhenGettingChannelsData() {
+        // given
+        val emptyJson = "{}"
+        val failure = Result.Failure()
+        whenever(mockedSplashView.getChannelsData()).thenReturn(emptyJson)
+        whenever(mockedSplashView.getChannelsDetailData()).thenReturn(emptyJson)
+        whenever(mockedChannelsRepo.saveChannelsData(emptyJson)).thenReturn(failure)
+        // when
+        splashPresenter.saveChannelsData()
+        // then
+        verify(mockedSplashView).dataNotSaved()
+    }
+
+    @Test
+    fun saveChannelsDataFailureWhenGettingChannelDetails() {
+        // given
+        val emptyJson = "{}"
+        val success = Result.Success(true)
+        val failure = Result.Failure()
+        whenever(mockedSplashView.getChannelsData()).thenReturn(emptyJson)
+        whenever(mockedSplashView.getChannelsDetailData()).thenReturn(emptyJson)
+        whenever(mockedChannelsRepo.saveChannelsData(emptyJson)).thenReturn(success)
+        whenever(mockedChannelsRepo.saveChannelDetailsData(emptyJson)).thenReturn(failure)
+        // when
+        splashPresenter.saveChannelsData()
+        // then
+        verify(mockedSplashView).dataNotSaved()
+    }
 
 
     private fun setUpPresenter(): SplashPresenter {
