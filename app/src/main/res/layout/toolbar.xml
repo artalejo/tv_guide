@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     style="@style/ToolbarStyle">
@@ -12,8 +11,8 @@
 
         <ImageView
             android:id="@+id/toolbar_account"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/toolbar_icon_size"
+            android:layout_height="@dimen/toolbar_icon_size"
             android:src="@drawable/ic_user"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,8 +21,8 @@
 
         <ImageView
             android:id="@+id/toolbar_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/toolbar_icon_size"
+            android:layout_height="@dimen/toolbar_icon_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +31,8 @@
 
         <ImageView
             android:id="@+id/toolbar_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/toolbar_icon_size"
+            android:layout_height="@dimen/toolbar_icon_size"
             app:srcCompat="@drawable/ic_search"
             android:layout_marginRight="16dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import artalejo.com.epg.R
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -61,4 +62,9 @@ abstract class BaseActivity: AppCompatActivity(), LoadingBaseView,
             }
         }
     }
+
+    fun overridePendingTransitionEnter() =
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+    fun overridePendingTransitionExit() =
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
 }

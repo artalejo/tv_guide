@@ -31,8 +31,4 @@ abstract class BaseFragment : Fragment(), LoadingBaseView, AnkoLogger, EmptyBase
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
 }

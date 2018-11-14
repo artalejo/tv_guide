@@ -3,11 +3,13 @@ package artalejo.com.epg.ui.channelDetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.Toolbar
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.base.BaseActivity
 import artalejo.com.epg.ui.entities.ChannelDetailViewEntity
+import artalejo.com.epg.ui.epgDetail.EpgDetailFragment.Companion.FAKE_REQUEST_DELAY
 import artalejo.com.epg.ui.utils.extensions.load
 import artalejo.com.epg.ui.utils.extensions.setParallaxBehaviour
 import artalejo.com.epg.ui.utils.extensions.setVisible
@@ -41,7 +43,7 @@ class ChannelDetailActivity : BaseActivity(), ChannelDetailView {
 
     override fun onBackPressed() {
         super.onBackPressed()
-//        overridePendingTransitionExit()
+        overridePendingTransitionExit()
     }
 
     private fun setUpToolbar() {
@@ -73,7 +75,7 @@ class ChannelDetailActivity : BaseActivity(), ChannelDetailView {
     override fun showLoading() = onLoading(listOf(channel_detail_header ,constraint_container), listOf(channel_detail_progress_bar))
     override fun hideLoading(){
         // Emulating the api call, the database is too quick and the loader is not shown as it should
-        android.os.Handler().postDelayed({ onInfoRetrieved(listOf(channel_detail_header ,constraint_container), listOf(channel_detail_progress_bar)) }, 500)
+        Handler().postDelayed({ onInfoRetrieved(listOf(channel_detail_header ,constraint_container), listOf(channel_detail_progress_bar)) }, FAKE_REQUEST_DELAY)
     }
 
 }

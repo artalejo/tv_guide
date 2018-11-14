@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.empty_fragment.*
 
 class EmptyFragment : BaseFragment() {
     companion object {
-        val TAG = EmptyFragment::class.java.simpleName
         val TITLE = "TITLE"
         fun newInstance(title: String = "") : EmptyFragment {
             val epgDetailFragment = EmptyFragment()

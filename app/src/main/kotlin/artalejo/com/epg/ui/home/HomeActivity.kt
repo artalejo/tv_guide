@@ -13,7 +13,7 @@ import artalejo.com.epg.ui.epg.EpgFragment
 import artalejo.com.epg.ui.epgDetail.EpgDetailFragment
 import kotlinx.android.synthetic.main.home_activity.*
 
-class HomeActivity: BaseActivity(), HomeView, BottomNavigationView.OnNavigationItemSelectedListener {
+class HomeActivity: BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         private const val EXTRA_FRAGMENT_EPG = "EXTRA_FRAGMENT_EPG"

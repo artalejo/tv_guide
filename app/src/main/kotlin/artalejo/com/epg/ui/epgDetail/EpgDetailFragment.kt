@@ -21,8 +21,8 @@ import javax.inject.Inject
 class EpgDetailFragment : BaseFragment(), ChannelDetailView {
 
     companion object {
-        val TAG = EpgDetailFragment::class.java.simpleName
-        val IS_LIVE = "IS_LIVE"
+        const val FAKE_REQUEST_DELAY = 500L
+        private const val IS_LIVE = "IS_LIVE"
         fun newInstance(isLiveShow: Boolean = false) : EpgDetailFragment {
             val epgDetailFragment = EpgDetailFragment()
             val args = Bundle()
@@ -73,6 +73,6 @@ class EpgDetailFragment : BaseFragment(), ChannelDetailView {
         // Emulating the api call, the database is too quick and the loader is not shown as it should
         android.os.Handler().postDelayed({
             onInfoRetrieved(listOf(channel_detail_header, constraint_container), listOf(channel_detail_progress_bar))
-        }, 500)
+        }, FAKE_REQUEST_DELAY)
     }
 }

@@ -4,7 +4,6 @@ import artalejo.com.epg.dependencyinjection.scope.PerActivity
 import artalejo.com.epg.ui.channelDetail.ChannelDetailActivity
 import artalejo.com.epg.ui.channelDetail.ChannelDetailActivityModule
 import artalejo.com.epg.ui.home.HomeActivity
-import artalejo.com.epg.ui.home.HomeActivityModule
 import artalejo.com.epg.ui.splash.SplashActivity
 import artalejo.com.epg.ui.splash.SplashActivityModule
 import dagger.Module
@@ -18,7 +17,7 @@ abstract class ActivityInjector {
     abstract fun contributeSplashInjector(): SplashActivity
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [HomeActivityModule::class])
+    @ContributesAndroidInjector(modules = [])
     abstract fun contributeHomeInjector(): HomeActivity
 
     @PerActivity

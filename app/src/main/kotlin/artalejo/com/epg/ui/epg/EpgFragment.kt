@@ -3,9 +3,10 @@ package artalejo.com.epg.ui.epg
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import artalejo.com.epg.Navigator
 import artalejo.com.epg.R
+import artalejo.com.epg.ui.base.BaseActivity
 import artalejo.com.epg.ui.base.BaseFragment
-import artalejo.com.epg.ui.channelDetail.ChannelDetailActivity
 import artalejo.com.epg.ui.entities.ChannelViewEntity
 import artalejo.com.epg.ui.epg.adapter.ChannelsAdapterDelegate
 import artalejo.com.epg.ui.utils.adapter.GenericAdapter
@@ -16,12 +17,12 @@ import javax.inject.Inject
 class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClickListener {
 
     companion object {
-        val TAG: String = EpgFragment::class.java.simpleName
         fun newInstance() = EpgFragment()
     }
 
     @Inject lateinit var channelsAdapter: GenericAdapter
     @Inject lateinit var presenter: EpgPresenter
+    @Inject lateinit var navigator: Navigator
     override var layout = R.layout.epg_fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +56,7 @@ class EpgFragment : BaseFragment(), EpgView, ChannelsAdapterDelegate.ChannelClic
 
     // Adapter listeners
     override fun onChannelClicked(channelEntity: ChannelViewEntity) {
-        context?.let { startActivity(ChannelDetailActivity.getIntent(it)) }
+        activity?.let { navigator.navigateToChannelDetail(it as BaseActivity) }
     }
 
     override fun onChannelFavoriteStatusChanged(channelEntityId: String, isFavorite: Boolean) {
