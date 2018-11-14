@@ -1,10 +1,13 @@
 package artalejo.com.epg.ui.epg.adapter
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
+import android.widget.ProgressBar
 import artalejo.com.epg.R
 import artalejo.com.epg.ui.entities.ChannelViewEntity
 import artalejo.com.epg.ui.utils.adapter.*
@@ -36,6 +39,8 @@ class ChannelsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
     class ChannelViewHolder(view: View, val listener: BaseListener?,
                            val context: Context) : ItemViewHolder(view) {
 
+        private val PROGRESS_ANIMATION_DURATION = 700L
+
         fun bind(channelEntity: ChannelViewEntity) {
             with(channelEntity) {
                 itemView.channel_logo.load(images.logo, placeHolderResourceId = R.color.colorPrimaryDark)
@@ -44,7 +49,8 @@ class ChannelsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
                     itemView.schedule_time.text = scheduleViewEntity.scheduleTime
                     itemView.show_title.text = scheduleViewEntity.title
                     setFavoriteStatus()
-                    itemView.show_progress.progress = (0..100).shuffled().last() // Getting random progress
+                    val randomProgress = (0..100).shuffled().last()
+                    itemView.show_progress.setProgressWithAnimation(randomProgress)
                 }
                 itemView.setOnClickListener {
                     listener?.let { (it as ChannelClickListener).onChannelClicked(channelEntity) }
@@ -59,6 +65,13 @@ class ChannelsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
 
         private fun ChannelViewEntity.setFavoriteStatus() {
             itemView.favorite_channel.setImageResource(if (isFavorite) R.drawable.ic_favorite_star else R.drawable.ic_grey_star)
+        }
+
+        private fun ProgressBar.setProgressWithAnimation(progressPercentage: Int) {
+            val animation = ObjectAnimator.ofInt(show_progress, "progress", progressPercentage)
+            animation.duration = PROGRESS_ANIMATION_DURATION
+            animation.interpolator = LinearInterpolator()
+            animation.start()
         }
     }
 }
