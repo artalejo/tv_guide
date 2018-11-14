@@ -26,4 +26,7 @@
     <dimen name="live_tag_size">10dp</dimen>
     <dimen name="toolbar_icon_size">30dp</dimen>
     <dimen name="logo_size">70dp</dimen>
+    <dimen name="channel_title_size">16sp</dimen>
+    <dimen name="show_title_size">20sp</dimen>
+    <dimen name="normal_title_size">14sp</dimen>
 </resources>

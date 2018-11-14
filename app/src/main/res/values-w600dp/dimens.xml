@@ -7,5 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="list_item_separation">8dp</dimen>
-    <dimen name="detail_image_height">300dp</dimen>
+    <dimen name="detail_image_height">600dp</dimen>
+    <dimen name="logo_size">100dp</dimen>
+    <dimen name="channel_title_size">24sp</dimen>
+    <dimen name="show_title_size">28sp</dimen>
+    <dimen name="normal_title_size">20sp</dimen>
 </resources>
